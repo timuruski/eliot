@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 require 'eliot'
 
 describe Eliot do
@@ -15,6 +14,8 @@ ID, E-mail, Status, First Name, Last Name, Last Login
   let(:parser) {
     Eliot.csv
          .extract(:id, :email, :_, :first_name, :last_name, :*)
+         .on_key(:id, &:to_i)
+         .on_key(:email) { |v| v.strip }
          .into { |data| User.new(data.to_hash) }
   }
 
@@ -26,6 +27,7 @@ ID, E-mail, Status, First Name, Last Name, Last Login
 
   it "builds the right object" do
     alice = subject.first
+    alice.id.should == 1
     alice.email.should == 'alice@example.com'
   end
 end

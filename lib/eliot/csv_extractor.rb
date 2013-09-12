@@ -12,12 +12,14 @@ module Eliot
       }
     end
 
-    def extract(*keys)
-      @key_extractor = KeyExtractor.new(keys)
+    def on_key(key, &block)
+      @key_extractor.on_key(key, &block)
       self
     end
 
-    def extract_entry(row)
+    def extract(*keys)
+      @key_extractor = KeyExtractor.new(keys)
+      self
     end
 
     def load(entry)
