@@ -12,14 +12,13 @@ ID, E-mail, Status, First Name, Last Name, Last Login
   end
 
   let(:parser) {
-    Eliot.csv
-         .extract(:id, :email, :_, :first_name, :last_name, :*)
-         .on_key(:id, &:to_i)
-         .on_key(:email) { |v| v.strip }
-         .into { |data| User.new(data.to_hash) }
+    Eliot.csv('a:id b:email d:first_name, c:last_name')
+         .on(:id, &:to_i)
+         .on(:email) { |v| v.strip }
+         .load(@users_csv)
   }
 
-  subject { parser.parse(@users_csv) }
+  subject { parser.map { |attrs| User.new(attrs.to_h) } }
 
   it "builds a list of objects from CSV" do
     subject.should have(3).users
