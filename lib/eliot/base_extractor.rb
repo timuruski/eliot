@@ -2,23 +2,30 @@ require 'eliot/key_extractor'
 
 module Eliot
   class BaseExtractor
-    DEFAULT_LOAD_PROC = Proc.new { |entry| entry }
+    include Enumerable
 
-    def initialize
-      @load_proc = DEFAULT_LOAD_PROC
+    def initialize(*args)
+      @sources = []
+      # extract options
+      # parse fields
+      #
+      # setup emitter
+      # setup record converter factory
     end
 
-    def extract(*keys)
+    def on(field, &block)
       self
     end
 
-    def into(&block)
-      @load_proc = Proc.new(&block)
+    def load(*sources)
       self
     end
 
-    def parse(path)
-      []
+    def next
     end
+
+    def each
+    end
+
   end
 end
