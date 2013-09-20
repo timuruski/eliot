@@ -1,3 +1,4 @@
+require 'eliot/key_parser'
 require 'eliot/csv'
 
 module Eliot

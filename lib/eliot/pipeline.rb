@@ -12,11 +12,20 @@ module Eliot
       @converter = converter || Converter.new(@emitter)
     end
 
-    def each
-      []
+    def load(*args)
+      self
     end
 
-    def_delegators :emitter, :load, :load_files
-    def_delegators :transformer, :each, :on
+    def load_files(*args)
+      self
+    end
+
+    def on(key, &block)
+      self
+    end
+
+    def each(&block)
+      @converter.each(&block)
+    end
   end
 end

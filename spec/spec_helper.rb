@@ -9,6 +9,10 @@
 #   attr_accessor :email, :first_name, :id, :last_name
 # end
 
+require 'eliot'
+
+include Eliot
+
 RSpec.configure do |config|
   config.color = true
   config.order = 'rand'
