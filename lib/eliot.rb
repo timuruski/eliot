@@ -1,6 +1,8 @@
-require 'eliot/key_parser'
-require 'eliot/csv'
-
 module Eliot
-  # TODO JSON, YAML extractors?
+  VERSION = '1.0.0'.freeze
 end
+
+require 'eliot/pipeline'
+require 'eliot/emitter'
+require 'eliot/converter'
+require 'eliot/key_parser'

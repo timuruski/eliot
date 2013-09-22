@@ -1,0 +1,4 @@
+ID, E-mail, Status, First Name, Last Name, Last Login
+1,  alice@example.com, active, Alice, Smith,2013-06-01
+2,  bob@example.com, active, Bob, Smith,2013-04-26
+2,  charlie@example.com, inactive, Charlie, Smith,2013-04-26

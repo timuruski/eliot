@@ -1,6 +1,6 @@
-require 'eliot/pipeline'
-require 'eliot/emitter'
-require 'eliot/converter'
+require 'csv'
+
+require 'eliot'
 
 module Eliot
   def self.csv(*args)

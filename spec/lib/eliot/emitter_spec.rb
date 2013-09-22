@@ -3,10 +3,6 @@ require 'eliot/emitter'
 
 module Eliot
   describe Emitter do
-    it "should exist" do
-      subject.should be_an Emitter
-    end
-
     before :all do
       @names = "alice\nbob"
       @fruit = "apple\nbanana"

@@ -1,14 +1,11 @@
 require 'spec_helper'
-require 'eliot'
+require 'support/user'
+require 'eliot/csv'
 
-describe Eliot do
+describe Eliot, ".csv" do
   before :all do
-    @users_csv = <<-CSV
-ID, E-mail, Status, First Name, Last Name, Last Login
-1,  alice@example.com, active, Alice, Smith,2013-06-01
-2,  bob@example.com, active, Bob, Smith,2013-04-26
-2,  charlie@example.com, inactive, Charlie, Smith,2013-04-26
-    CSV
+    users_path = File.expand_path('support/users.csv', SPEC_DIR)
+    @users_csv = File.read(users_path)
   end
 
   let(:parser) {
