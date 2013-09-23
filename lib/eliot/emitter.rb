@@ -1,4 +1,5 @@
 require 'stringio'
+require 'pathname'
 
 module Eliot
   class Emitter
@@ -8,7 +9,6 @@ module Eliot
       @sources = []
       @enumerator = Fiber.new do
         sources.each do |source|
-          source = StringIO.new(source)
           source.each do |item|
             Fiber.yield item
           end
@@ -19,8 +19,10 @@ module Eliot
 
     attr_reader :sources
 
+    ReadableFile = ->(source) { Pathname.new(source).readable? }
+
     def load(source)
-      @sources << source
+      @sources << to_io(source)
     end
 
     def each
@@ -32,6 +34,19 @@ module Eliot
 
     def next
       @enumerator.resume
+    end
+
+    protected
+
+    def to_io(source)
+      case source
+      when StringIO, IO
+        source
+      when Pathname, ReadableFile
+        File.open(source)
+      else
+        StringIO.new(source)
+      end
     end
   end
 end

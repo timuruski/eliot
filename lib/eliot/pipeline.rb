@@ -25,7 +25,10 @@ module Eliot
     end
 
     def each(&block)
-      @converter.each(&block)
+      # fiber loop
+      #   get value from emitter
+      #   pass through converter
+      #   yield
     end
   end
 end

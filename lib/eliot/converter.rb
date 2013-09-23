@@ -6,8 +6,8 @@ module Eliot
     def on(key, &block)
     end
 
-    def each(&block)
-      []
+    def convert(row)
     end
+
   end
 end
