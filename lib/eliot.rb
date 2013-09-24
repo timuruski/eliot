@@ -5,4 +5,4 @@ end
 require 'eliot/pipeline'
 require 'eliot/emitter'
 require 'eliot/converter'
-require 'eliot/key_parser'
+require 'eliot/key_set'
